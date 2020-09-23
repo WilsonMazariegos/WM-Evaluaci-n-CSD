@@ -254,7 +254,7 @@
             this.panel4.Controls.Add(this.label7);
             this.panel4.Location = new System.Drawing.Point(13, 220);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(685, 151);
+            this.panel4.Size = new System.Drawing.Size(685, 181);
             this.panel4.TabIndex = 3;
             // 
             // gvEmpresas
@@ -319,7 +319,7 @@
             // 
             // Form1
             // 
-            this.ClientSize = new System.Drawing.Size(710, 383);
+            this.ClientSize = new System.Drawing.Size(710, 413);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);

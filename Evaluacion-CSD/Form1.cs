@@ -68,27 +68,37 @@ namespace Evaluacion_IM
       }
 
       private void btnBuscarEmpresa_Click(object sender, EventArgs e)
-      {          
-          conexion conect = new conexion();
-          conect.openConexion();          
-          String consulta = "";
-          
-          if(txtNombre.Text != String.Empty && txtCodigo.Text != String.Empty){
-              consulta = "select * from TblEmpresas where EmpresaId = " + Int32.Parse(txtCodigo.Text) + " and Nombre = '" + txtNombre.Text + "'";
-          }else
-          if(txtNombre.Text != String.Empty){
-              consulta = "select * from TblEmpresas where Nombre = '" + txtNombre.Text + "'";
-          }else
-          if(txtCodigo.Text != String.Empty){
-              consulta = "select * from TblEmpresas where EmpresaId = " + Int32.Parse(txtCodigo.Text);
+      {
+          try
+          {
+              conexion conect = new conexion();
+              conect.openConexion();
+              String consulta = "";
+
+              if (txtNombre.Text != String.Empty && txtCodigo.Text != String.Empty)
+              {
+                  consulta = "select * from TblEmpresas where EmpresaId = " + Int32.Parse(txtCodigo.Text) + " and Nombre = '" + txtNombre.Text + "'";
+              }
+              else
+                  if (txtNombre.Text != String.Empty)
+                  {
+                      consulta = "select * from TblEmpresas where Nombre = '" + txtNombre.Text + "'";
+                  }
+                  else
+                      if (txtCodigo.Text != String.Empty)
+                      {
+                          consulta = "select * from TblEmpresas where EmpresaId = " + Int32.Parse(txtCodigo.Text);
+                      }
+
+              SqlCommand sqlcommand = new SqlCommand(consulta, conect.conection);
+              SqlDataAdapter adaptador = new SqlDataAdapter();
+              adaptador.SelectCommand = sqlcommand;
+              DataTable table = new DataTable();
+              adaptador.Fill(table);
+              gvEmpresas.DataSource = table;
+          }catch(Exception ex){
+              MessageBox.Show("Ingrese por lo menos un valor");
           }
-          
-          SqlCommand sqlcommand = new SqlCommand(consulta,conect.conection);
-          SqlDataAdapter adaptador = new SqlDataAdapter();
-          adaptador.SelectCommand = sqlcommand;
-          DataTable table = new DataTable();
-          adaptador.Fill(table);
-          gvEmpresas.DataSource = table;          
       }
 
    }
